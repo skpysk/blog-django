@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title%} Blogpost-Home {%endblock title %}
+{% block blogactive %} active {% endblock blogactive %}
+{%block body %}
+
+<div class="container">
+  {% for i in post %}
+  <center>
+  <div class="row mb-2">
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary"></strong>
+          <h3 class="mb-0">{{i.title}}</h3>
+          <div class="mb-1 text-muted">By {{i.author}} on {{i.punlish_date}}</div>
+          <h5 class="mb-0">{{i.heading}}</h5>
+          <div class="mb-1 text-muted"></div>
+          <p class="card-text mb-auto">{{i.content|slice:"0:50"}}...</p>
+          <a href="#" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <!-- <img src='/media/{{i.thumbnail}}' height="250" width="2001" class="card-img-top" alt="..."> -->
+          <img src="/media/{{i.thumbnail}}" width="300" height="250" alt="" class="src">
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+</center>
+  {% endfor %}
+</div>
+
+
+</div>
+
+
+
+
+{% endblock body%}

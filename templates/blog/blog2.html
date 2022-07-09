@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title%} Blogposts {%endblock title %}
+{%block body %}
+
+<center>
+  <div class="container">
+
+    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <img src="/media/{{post.thumbnail}}" width="400" height="250" alt="" class="src">
+      <div class="col p-4 d-flex flex-column position-static">
+
+
+        <h3 class="mb-0">{{post.title}}</h3>
+        <div class="mb-1 text-muted">By {{post.author}} on {{post.punlish_date}}</div>
+        <h5 class="mb-0">{{post.heading}}</h5>
+        <p class="card-text mb-auto">{{post.content}}</p>
+        <div class="my-2">
+        </div>
+
+
+
+      </div>
+    </div>
+    </div>
+   
+</center>
+<!-- comment  -->
+<div class="container">
+
+  <h2>comments</h2>
+  <form action="/blog/postcomment" method="post">
+    {% csrf_token %}
+      <input type="text" name="comment" placeholder="Enter comment here">
+      <input type="hidden" name="postSno" value="{{post.sno}}" >
+      <input type="submit" value="Submit">
+
+  </form>
+  {% for comment in comments %}
+  <div class="row my-3">
+      <div class="col-md-1  ">
+      <img class="rounded mx-auto d-block w-100 p-2" src="/static/img/user.png"  alt="user">
+      </div>
+      <div class="col-md-11 "> 
+      <b> {{comment.user.username}} </b> at {{comment.timestamp}}
+      <div>   {{comment.comment}} </div>
+  </div>
+  </div>
+  {% endfor %}
+{% endblock body%}

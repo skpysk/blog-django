@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title%} Blogpost-Home {%endblock title %}
+{% block blogactive %} active {% endblock blogactive %}
+{%block body %}
+<center>
+  {% for i in post %}
+<div class="container">
+  
+<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+  <img src="/media/{{i.thumbnail}}" width="400" height="300" alt="" class="src">
+  <div class="col p-4 d-flex flex-column position-static">
+    
+    
+    <h3 class="mb-0"> <a class="text-dark" href="/blog/{{i.slug}}">{{i.title}} </a></h3>
+    <div class="mb-1 text-muted">By {{i.author}} on {{i.punlish_date}}</div>
+    <h5 class="mb-0">{{i.heading}}</h5>
+    <p class="card-text mb-auto">{{i.content|safe|slice:"0:180"}}...</p>
+    <div class="my-2">
+    <a href="/blog/{{i.slug}}" role="button" class="btn btn btn-primary">Continue reading</a></div>
+  </div>
+
+    
+  
+</div>
+<!-- 
+{% endfor %}
+<div class="d-flex justify-content-end mb-4" style="float:left;"><a class="btn btn-primary text-uppercase" href="{{prev.previous_page_number}}">&larr; Previous Posts</a></div>
+         <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{{ prev.next_page_number }}">next Posts →</a></div> -->
+
+         {% if prev.has_previous %}
+         <li><a href="?page={{ prev.previous_page_number }}" class=" button big previous">Previous Page</a></li>
+   {% else %}
+         <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+   {%endif%}
+   {% if prev.has_next %}
+         <li><a href="?page={{ prev.next_page_number }}" class="button big next">Next Page</a></li>
+   {%else%}
+         <li><a href="#" class="button big next">Next Page</a></li>
+   {%endif%}
+        </div>
+
+
+</center>
+
+{% endblock body%}
